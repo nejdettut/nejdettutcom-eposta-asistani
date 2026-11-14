@@ -28,12 +28,42 @@ const TONES: { value: Tone; label: string; icon: string }[] = [
   { value: "arkadasca", label: "Arkadaşça", icon: "🙌" },
 ];
 
-const EXAMPLE = {
-  topic: "Toplantı ertelenmesi talebi",
-  recipient: "Müdürüm Ayşe Yıldız",
-  points:
-    "Yarın saat 14:00'teki toplantıyı, acil bir müşteri ziyareti nedeniyle öğleden sonraya veya ertesi güne alabilir miyiz? Tarih önerisi sunacağım.",
-};
+const EXAMPLES: Array<{
+  label: string;
+  topic: string;
+  recipient: string;
+  points: string;
+  tone: Tone;
+  language: Lang;
+}> = [
+  {
+    label: "Toplantı · resmi",
+    topic: "Toplantı ertelenmesi talebi",
+    recipient: "Müdürüm Ayşe Yıldız",
+    tone: "resmi",
+    language: "tr",
+    points:
+      "Yarın saat 14:00'teki toplantıyı, acil bir müşteri ziyareti nedeniyle öğleden sonraya veya ertesi güne alabilir miyiz? Tarih önerisi sunacağım.",
+  },
+  {
+    label: "İş başvuru · samimi",
+    topic: "Backend Developer başvuru",
+    recipient: "ABC Teknoloji İK",
+    tone: "samimi",
+    language: "tr",
+    points:
+      "LinkedIn'deki Backend Developer ilanınızı gördüm. Node.js ve PostgreSQL ile 3 yıl deneyimim var. CV ekte; görüşme için uygun zamanı birlikte planlayalım.",
+  },
+  {
+    label: "Teşekkür · English",
+    topic: "Thank you for the interview",
+    recipient: "Hiring Manager",
+    tone: "resmi",
+    language: "en",
+    points:
+      "Thank you for yesterday's interview. I enjoyed the discussion about the architecture and I'm even more excited about the role. Happy to share references.",
+  },
+];
 
 const BTN_PRIMARY =
   "inline-flex items-center justify-center gap-1.5 rounded-lg bg-brand-navy px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-navy/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-turquoise focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-brand-turquoise dark:text-brand-navy";
@@ -170,18 +200,23 @@ export function EpostaApp() {
                   </>
                 )}
               </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setTopic(EXAMPLE.topic);
-                  setRecipient(EXAMPLE.recipient);
-                  setPoints(EXAMPLE.points);
-                }}
-                disabled={loading}
-                className={BTN_OUTLINE}
-              >
-                Örnek doldur
-              </button>
+              {EXAMPLES.map((ex) => (
+                <button
+                  key={ex.label}
+                  type="button"
+                  onClick={() => {
+                    setTopic(ex.topic);
+                    setRecipient(ex.recipient);
+                    setPoints(ex.points);
+                    setTone(ex.tone);
+                    setLanguage(ex.language);
+                  }}
+                  disabled={loading}
+                  className={BTN_OUTLINE}
+                >
+                  {ex.label}
+                </button>
+              ))}
             </div>
             <p className={cn("text-[11px]", MUTED)}>
               Saatte 30 taslak sınırı var.
