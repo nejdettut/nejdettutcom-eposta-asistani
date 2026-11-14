@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "AI Diyet Koçu — nejdettut.com",
+  title: "AI E-posta Asistanı — nejdettut.com",
   description:
-    "Gün içinde yenileni serbest metin olarak yaz: yapay zekâ kalori hesaplar, beslenme dengesi analizi yapar ve hedefine göre 7 günlük beslenme planı önerir.",
+    "Resmi, samimi veya diplomatik tonda, Türkçe veya İngilizce profesyonel e-posta taslakları üretir. Kısa bir brief yaz, yapay zekâ konu başlığı + gövde + imza üretir.",
   robots: { index: true, follow: true },
 };
 
